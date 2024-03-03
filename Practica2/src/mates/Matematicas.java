@@ -29,7 +29,7 @@ public class Matematicas{
 	long pasos = 1000000; 
 	
         // Calcula la aproximación de pi utilizando el método de Montecarlo
-	double piAproximado = generarNumeroPiIterativo(pasos);
+	double piAproximado = generarNumeroPiRecursivo(pasos, 0);
 
         // Imprime la aproximación de pi obtenida
 	System.out.println("Aproximación de pi con " + pasos + " pasos: " + piAproximado); 
@@ -48,32 +48,21 @@ public class Matematicas{
      * @return una aproximación del valor de pi calculada con el método de Montecarlo
      */
 
-    public static double generarNumeroPiIterativo(long pasos) {
-        // Instancia de la clase Random para generar números aleatorios
-	Random random = new Random();
-	
-	// Contador para los puntos que caen dentro del círculo
-	long dentroDelCirculo = 0;
-
-        // Bucle para generar puntos aleatorios y contar cuántos caen dentro del círculo
-	for (long i = 0; i < pasos; i++) { 
-	    // Genera una coordenada x aleatoria
-	    double x = random.nextDouble(); 
-            
-	    // Genera una coordenada y aleatoria
-	    double y = random.nextDouble(); 
-
-            // Calcula la distancia desde el origen (0,0) al punto generado
-	    double distancia = x * x + y * y; 
-
-            // Verifica si el punto está dentro del círculo
-	    if (distancia <= 1) { 
-                // Incrementa el contador si el punto está dentro del círculo
-		dentroDelCirculo++;
-            }
+    public static double generarNumeroPiRecursivo(long pasos, long dentroDelCirculo) {
+        if (pasos == 0) {
+            return ((double) dentroDelCirculo / (double) pasos) * 4;
         }
-	
-	// Calcula y devuelve la aproximación de pi utilizando el método de Montecarl
-        return (double) dentroDelCirculo / (double) pasos * 4; 
+
+        Random random = new Random();
+        double x = random.nextDouble();
+        double y = random.nextDouble();
+        double distancia = x * x + y * y;
+
+        if (distancia <= 1) {
+            dentroDelCirculo++;
+        }
+
+        return generarNumeroPiRecursivo(pasos - 1, dentroDelCirculo);
     }
-}       
+}
+
