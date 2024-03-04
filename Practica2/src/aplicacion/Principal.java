@@ -29,7 +29,7 @@ public class Principal {
      *             representa el número de aproximaciones para calcular Pi.
      */
     public static void main(String[] args) {
-        // Convierte el argumento de línea de comandos a un entero, calcula una aproximación del número Pi y lo imprime
-        System.out.println("El número PI es " + Matematicas.generarNumeroPiIterativo(Integer.parseInt(args[0])));
+        // Convierte el argumento de línea de comandos a un entero, calcula una aproximación del número Pi utilizando el método de Montecarlo y lo imprime
+        System.out.println("Aproximación de pi con " + args[0] + " pasos: " + Matematicas.generarNumeroPiRecursivo(Integer.parseInt(args[0])));
     }
 }

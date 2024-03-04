@@ -29,7 +29,7 @@ public class Matematicas{
 	long pasos = 1000000; 
 	
         // Calcula la aproximación de pi utilizando el método de Montecarlo
-	double piAproximado = generarNumeroPiRecursivo(pasos, 0);
+	double piAproximado = generarNumeroPiRecursivo(pasos);
 
         // Imprime la aproximación de pi obtenida
 	System.out.println("Aproximación de pi con " + pasos + " pasos: " + piAproximado); 
@@ -48,21 +48,30 @@ public class Matematicas{
      * @return una aproximación del valor de pi calculada con el método de Montecarlo
      */
 
-    public static double generarNumeroPiRecursivo(long pasos, long dentroDelCirculo) {
-        if (pasos == 0) {
-            return ((double) dentroDelCirculo / (double) pasos) * 4;
+    public static double generarNumeroPiRecursivo(long pasos) {
+        return generarNumeroPiRecursivo(pasos, 0, 0);
+    }
+
+    private static double generarNumeroPiRecursivo(long pasos, long dentroDelCirculo, long totalPuntos) {
+        // Caso base: si se han alcanzado todos los pasos, calcula y devuelve la aproximación de pi
+        if (totalPuntos == pasos) {
+            return (double) dentroDelCirculo / pasos * 4;
         }
 
+        // Genera un punto aleatorio
         Random random = new Random();
         double x = random.nextDouble();
         double y = random.nextDouble();
+
+        // Calcula la distancia al origen
         double distancia = x * x + y * y;
 
+        // Si el punto cae dentro del círculo, incrementa el contador
         if (distancia <= 1) {
             dentroDelCirculo++;
         }
 
-        return generarNumeroPiRecursivo(pasos - 1, dentroDelCirculo);
+        // Llama recursivamente al método con el siguiente punto
+        return generarNumeroPiRecursivo(pasos, dentroDelCirculo, totalPuntos + 1);
     }
 }
-
