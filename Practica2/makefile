@@ -9,4 +9,4 @@ compilar: limpiar
 	find . -name *.java | xargs javac -cp bin -d bin
 
 jar: compilar
-	jar cvfm $(fichJar) Manifest.txt -C bin . 
+	jar cvfm $(fichJar) manifest -C bin . 
