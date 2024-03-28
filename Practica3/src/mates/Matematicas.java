@@ -1,5 +1,6 @@
 package mates;
 
+import java.util.stream.LongStream;
 import java.util.Random;
 /**
  * La clase Matematicas proporciona métodos para calcular aproximaciones de pi utilizando
@@ -29,7 +30,7 @@ public class Matematicas{
 	long pasos = 1000000; 
 	
         // Calcula la aproximación de pi utilizando el método de Montecarlo
-	double piAproximado = generarNumeroPiRecursivo(pasos);
+	double piAproximado = generarNumeroPiLambda(pasos);
 
         // Imprime la aproximación de pi obtenida
 	System.out.println("Aproximación de pi con " + pasos + " pasos: " + piAproximado); 
@@ -48,30 +49,20 @@ public class Matematicas{
      * @return una aproximación del valor de pi calculada con el método de Montecarlo
      */
 
-    public static double generarNumeroPiRecursivo(long pasos) {
-        return generarNumeroPiRecursivo(pasos, 0, 0);
-    }
-
-    private static double generarNumeroPiRecursivo(long pasos, long dentroDelCirculo, long totalPuntos) {
-        // Caso base: si se han alcanzado todos los pasos, calcula y devuelve la aproximación de pi
-        if (totalPuntos == pasos) {
-            return (double) dentroDelCirculo / pasos * 4;
-        }
-
-        // Genera un punto aleatorio
+    
+    public static double generarNumeroPiLambda(long pasos) {
         Random random = new Random();
-        double x = random.nextDouble();
-        double y = random.nextDouble();
 
-        // Calcula la distancia al origen
-        double distancia = x * x + y * y;
+        // Utilizamos LongStream para generar una secuencia de números desde 0 hasta pasos-1
+        long dentroDelCirculo = LongStream.range(0, pasos)
+                                           .filter(i -> {
+                                               double x = random.nextDouble();
+                                               double y = random.nextDouble();
+                                               double distancia = x * x + y * y;
+                                               return distancia <= 1;
+                                           })
+                                           .count();
 
-        // Si el punto cae dentro del círculo, incrementa el contador
-        if (distancia <= 1) {
-            dentroDelCirculo++;
-        }
-
-        // Llama recursivamente al método con el siguiente punto
-        return generarNumeroPiRecursivo(pasos, dentroDelCirculo, totalPuntos + 1);
+        return (double) dentroDelCirculo / pasos * 4;
     }
 }
