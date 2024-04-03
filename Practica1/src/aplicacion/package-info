@@ -1,0 +1,4 @@
+/**
+ * aplicacion representa la entrada principal del programa y coordina el cálculo de la aproximación de Pi 
+ */
+package aplicacion;
