@@ -43,13 +43,4 @@ public class CalculadoraDistancias{
         // La distancia de edición entre las cadenas completas s1 y s2
         return dp[m][n];
     }
-
-    public static void main(String[] args) {
-        String s1 = "kitten";
-        String s2 = "sitting";
-
-        int distancia = calcularDistancia(s1, s2);
-        System.out.println("La distancia de edición entre '" + s1 + "' y '" + s2 + "' es: " + distancia);
-    }
 }
-
