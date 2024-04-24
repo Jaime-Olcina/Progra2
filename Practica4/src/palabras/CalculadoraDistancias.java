@@ -18,7 +18,7 @@ public class CalculadoraDistancias{
         int n = s2.length();
 
         // Creamos una matriz para almacenar la distancia de edición parcial
-        int[][] distanciaParcial = new int[m + 1][n + 1];
+        int[][] distanciaPalabras = new int[m + 1][n + 1];
 
 	// Convertimos las cadenas en arrays de caracteres para comparar dos letras de s1 y s2 y poder llevar a cabo las operaciones del programa
 	char[] X = s1.toCharArray();
@@ -26,30 +26,30 @@ public class CalculadoraDistancias{
 
         // Caso base: la distancia de una cadena vacía a otra de longitud n requiere n operaciones
         for (int i = 0; i < m + 1; i++) {
-            distanciaParcial[i][0] = i;
+            distanciaPalabras[i][0] = i;
         }
         // La distancia de una cadena de longitud m a una cadena vacía requiere m operaciones
         for (int j = 0; j < n + 1; j++) {
-            distanciaParcial[0][j] = j;
+            distanciaPalabras[0][j] = j;
         }
 
-        // Llenar la matriz distanciaParcial
+        // Llenar la matriz distanciaPalabras
         for (int i = 1; i < m + 1; i++) {
             for (int j = 1; j < n + 1; j++) {
                 if ((X[i - 1]) == (Y[j - 1])) {
-                    distanciaParcial[i][j] = distanciaParcial[i - 1][j - 1];
+                    distanciaPalabras[i][j] = distanciaPalabras[i - 1][j - 1];
 		    // Caracteres iguales, no hay costo adicional o aumento en la distancia
                 } else {
                     // Costo de la operación de edición:
-                    // Insertar (distanciaParcial[i][j-1]), Eliminar (distanciaParcial[i-1][j]), o Sustituir (distanciaParcial[i-1][j-1])
-                    distanciaParcial[i][j] = 1 + Math.min(distanciaParcial[i][j - 1], // Insertar
-                                            Math.min(distanciaParcial[i - 1][j], // Eliminar
-                                                     distanciaParcial[i - 1][j - 1])); // Sustituir
+                    // Insertar (distanciaPalabras[i][j-1]), Eliminar (distanciaPalabras[i-1][j]), o Sustituir (distanciaPalabras[i-1][j-1])
+                    distanciaPalabras[i][j] = 1 + Math.min(distanciaPalabras[i][j - 1], // Insertar
+                                            Math.min(distanciaPalabras[i - 1][j], // Eliminar
+                                                     distanciaPalabras[i - 1][j - 1])); // Sustituir
                 }
             }
         }
 
         // La distancia de edición entre las cadenas completas s1 y s2
-        return distanciaParcial[m][n];
+        return distanciaPalabras[m][n];
     }
 }
