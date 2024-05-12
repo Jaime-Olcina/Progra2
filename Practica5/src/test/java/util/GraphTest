@@ -12,15 +12,15 @@ import java.util.ArrayList;
 public class GraphTest{
 
     /*
-     * This test checks that the method `shortestPath(V v1, V v2)` finds the 
-     * best path between `v1` and `v2` when it exists.
+     * Esta prueba comprueba que el método `shortestPath(V v1, V v2)` encuentre 
+     * la mejor ruta entre `v1` y `v2` cuando exista.
      *
      */
     @Test
     public void shortestPathFindsAPath(){
         System.out.println("\nTest shortestPathFindsAPath"); 
         System.out.println("----------------------------"); 
-        // We build the graph
+        // Construimos el grafo
         Graph<Integer> g = new Graph<>();
         g.addEdge(1, 2);
         g.addEdge(1, 5);
@@ -28,12 +28,12 @@ public class GraphTest{
         g.addEdge(3, 4);
         g.addEdge(5, 4);
 
-        // We build the expected path
+        // Construimos el camino esperado
         List<Integer> expectedPath = new ArrayList<>();
         expectedPath.add(1);
         expectedPath.add(5);
         expectedPath.add(4);
-        //We check if the returned path is equal to the expected one.
+        // Comprobamos si la ruta devuelta es igual a la esperada.
         assertEquals(expectedPath, g.shortestPath(1, 4));
     }
 }
