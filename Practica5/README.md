@@ -19,9 +19,9 @@ Clone el repositorio mediante el siguiente comando:
 git clone https://github.com/Jaime-Olcina/Progra2.git
 
 Debido a la naturaleza del repositorio, deberá elegir el número de la práctica acorde a lo que esté buscando (en este caso será la Practica2) mediante el siguiente comando:
-cd Practica2/
+cd Practica5/
 
-Ejecute el archivo Principal.class con el siguiente comando, especificando el número de aproximaciones como argumento:
+Ejecute el archivo Graph.java con el siguiente comando, especificando el número de aproximaciones como argumento:
 java -jar pi.jar <número de aproximaciones>
 Donde <número de aproximaciones> es el número de puntos aleatorios que se van a generar para calcular la aproximación de Pi. Cuanto mayor sea este número, más precisa será la aproximación.
 
