@@ -32,8 +32,8 @@ public class GraphTest{
   }
   
   /**
-   * Prueba de comprobación de la existencia de un vértice en el gráfico.
-   * Comprueba que el gráfico no contiene el vértice cuando este no ha sido agregado.
+   * Prueba agregando una arista al gráfico.
+   * Verifica que el gráfico contenga la arista después de haberla agregado.
    */
   @Test
   public void addEdge1(){
